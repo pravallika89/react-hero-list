@@ -1,5 +1,6 @@
 import HeadingComponent from './Heading.js';
-import HeroListComponent from './HeroList.js'
+import HeroListComponent from './HeroList.js';
+import HeroFormComponent from './HeroForm.js'
 import './App.css';
 // let heroes=['Goku','Ash Ketchum','Sailor Moon','EliZBest',];
 
@@ -40,6 +41,7 @@ const App =() => {
   return (
     <div className="container">
       <HeadingComponent title={title} subTitle={subTitle}/>
+      <HeroFormComponent/>
       <HeroListComponent heroes={heroes}/>
     </div>
   );
