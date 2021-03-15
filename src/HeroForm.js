@@ -1,27 +1,48 @@
 import {useState} from 'react';
 
-const HeroFormComponent=()=>{
+const HeroFormComponent=({addNewHero})=>{
   //Initialize variables and state hooks
   const [heroName,setHeroName]=useState('');
+  const[heroPower,setHeroPower]=useState('');
+  const[heroUniverse,setHeroUniverse]=useState('');
+  const[heroCoolnessRating,setHeroCoolnessRating]=useState(5);
+  //let heroName= '';
   
   //Initialize my functions
 
 
-  const handleChange=(event)=>{
+  const handleSubmit=(event)=>{
     event.preventDefault();
-    console.log(event.target.value);
+    console.log(`My hero is :${heroName} and power is ${heroPower}`);
+    let newHero={
+      name:heroName,
+      power:heroPower,
+      universe:heroUniverse,
+      coolnessRating:heroCoolnessRating,
+    };
+    console.log(newHero);
+    addNewHero(newHero);
+    clearForm();
+  };
+  const clearForm=()=>{
+    setHeroName('');
+    setHeroPower('');
+    setHeroUniverse('');
+    setHeroCoolnessRating(5);
   }
  return (
   <div className="row mb-5">
     <div className='col-6 offset-3'>
-      <form action='submit' id='hero-form'>
+      <form action='submit' id='hero-form' onSubmit={handleSubmit}>
         <div className='form-group'>
           <label htmlFor='heroName'>Hero name</label>
           <input type='text'
           className='form-control'
           id='heroName'
           value={heroName}
-          onChange={(event)=>{setHeroName(event.target.value)}}
+          onChange={(event)=>
+            {setHeroName(event.target.value)}}
+          
           />
         </div>
 
@@ -31,7 +52,11 @@ const HeroFormComponent=()=>{
             type='text' 
             className='form-control'
             id='heroPower'
-            value=""
+            value={heroPower}
+            onChange={(event)=>{
+              setHeroPower(event.target.value)
+            }
+            }
             />
         </div>
         <div className="row">
@@ -41,7 +66,11 @@ const HeroFormComponent=()=>{
               type='text' 
               className='form-control'
               id='heroUniverse'
-              value=""
+              value={heroUniverse}
+              onChange={(event)=>{
+                setHeroUniverse(event.target.value)
+              }
+              }
               />
           </div>
 
@@ -51,7 +80,10 @@ const HeroFormComponent=()=>{
               type='text' 
               className='form-control'
               id='heroCoolnessRating'
-              value=""
+              value={heroCoolnessRating}
+              onChange={(event)=>{
+                setHeroCoolnessRating(event.target.value)
+              }}
               />
           </div>
         </div>
